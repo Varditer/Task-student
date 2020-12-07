@@ -3,7 +3,7 @@ package com.company;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
+
 
 public class Main {
 
@@ -16,78 +16,80 @@ public class Main {
         for (int i = 0; i < strings.length; i++) {
             String[] s = strings[i].split(",");
             students[i] = new Student();
-            students[i].FirstName = s[0];
-            students[i].LastName = s[1];
-            students[i].Year = Integer.parseInt(s[2]);
-            students[i].Gender = s[3];
-            students[i].Mark = Float.parseFloat(s[4]);
+            students[i].setFirstName(s[0]);
+            students[i].setLastName(s[1]);
+            students[i].setYear( Integer.parseInt(s[2]));
+            students[i].setGender(s[3]);
+            students[i].setMark(Float.parseFloat(s[4]));
         }
+        // Print full names of students
         for (int i = 0; i < strings.length; i++) {
-            System.out.println("The full name is: " + students[i].FirstName);
+            System.out.println("The full name is: " + students[i].getFirstName());
         }
+        //Print all male students
         for (int i = 0; i < strings.length; i++) {
-            if (students[i].Gender.equals("m")) {
-                System.out.println(students[i].FirstName);
+            if (students[i].getGender().equals("m")) {
+                System.out.println(students[i].getFirstName());
             }
         }
+        //Print all female students who has mark greater then 50.4
         for (int i = 0; i < strings.length; i++) {
-            if (students[i].Mark > 50.4 && students[i].Gender.equals("f")) {
-                System.out.println(students[i].FirstName);
+            if (students[i].getMark() > 50.4 && students[i].getGender().equals("f")) {
+                System.out.println(students[i].getFirstName());
             }
         }
+        //Print student information having the minimal mark
         for (int i = 0; i < strings.length; i++) {
-            if (students[i].Mark < 50.4) {
-                System.out.println(students[i].FirstName + students[i].LastName + students[i].Year + students[i].Gender);
+            if (students[i].getMark() < 50.4) {
+                System.out.println(students[i].getFirstName() + students[i].getLastName() + students[i].getYear() + students[i].getGender());
             }
 
         }
-        int curentindex=0;
-        int curentvalue=students[0].Year;
-        for (int i = 1; i < strings.length; i++){
-          if(students[i].Year > curentvalue){
-              curentvalue=students[i].Year;
-              curentindex=i;
-          }
+        //Print biggest male student information
+        int curentindex = 0;
+        int curentvalue = students[0].getYear();
+        for (int i = 1; i < strings.length; i++) {
+            if (students[i].getYear() > curentvalue) {
+                curentvalue = students[i].getYear();
+                curentindex = i;
+            }
 
         }
-        System.out.println(students[curentindex].FirstName + students[curentindex].LastName + students[curentindex].Year + students[curentindex].Gender + students[curentindex].Mark );
-
-        for (int i = 0; i < students.length-1; i++) {
-            for (int j = i+1; j < students.length; j++) {
-                if(students[i].Mark > students[j].Mark ){
+        System.out.println(students[curentindex].getFirstName() + students[curentindex].getLastName() + students[curentindex].getYear() + students[curentindex].getGender() + students[curentindex].getMark());
+        //Print students sorted by mark
+        for (int i = 0; i < students.length - 1; i++) {
+            for (int j = i + 1; j < students.length; j++) {
+                if (students[i].getMark() > students[j].getMark()) {
                     Student student = new Student();
                     student = students[i];
-                    students[i]=students[j];
-                    students[j]=student;
+                    students[i] = students[j];
+                    students[j] = student;
 
                 }
             }
 
         }
         System.out.println("sorted by Mark");
-        for (int i = 0; i < students.length ; i++) {
-            System.out.println(students[i].FirstName);
+        for (int i = 0; i < students.length; i++) {
+            System.out.println(students[i].getFirstName());
         }
-        for (int i = 0; i < students.length-1; i++){
-            for (int j = i+1; j < students.length; j++){
-                if(students[i].Year > students[j].Year){
+        //Print female students sorted by year
+        for (int i = 0; i < students.length - 1; i++) {
+            for (int j = i + 1; j < students.length; j++) {
+                if (students[i].getYear() > students[j].getYear()) {
                     Student student = new Student();
                     student = students[i];
-                    students[i]=students[j];
-                    students[j]=student;
+                    students[i] = students[j];
+                    students[j] = student;
                 }
 
             }
 
         }
         for (int i = 0; i < strings.length; i++) {
-            if (students[i].Gender.equals("f")) {
-                System.out.println(students[i].FirstName);
+            if (students[i].getGender().equals("f")) {
+                System.out.println(students[i].getFirstName());
             }
         }
-
-
     }
-     
 }
-
